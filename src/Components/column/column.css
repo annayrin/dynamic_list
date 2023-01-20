@@ -1,0 +1,20 @@
+.column {
+    width: 50%;
+    height: 100%;
+    /*border-right: 1px solid white;*/
+}
+
+.col-header {
+    height: 60px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 60px;
+    border-style: none none solid none;
+    border-color: white;
+    border-bottom-width: 1px;
+}
+
+.col-content {
+    height: calc(100% - 60px);
+}
