@@ -29,6 +29,17 @@
     margin: 0;
 }
 
+.closer {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 32px;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+}
+
 .content {
     height: calc(100% - 80px);
     border-radius: 0 0 8px 8px;
