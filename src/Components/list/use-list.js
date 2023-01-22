@@ -1,59 +1,42 @@
-import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {useState} from "react";
 
 
 const useList = () => {
 
-    const [list, setList] = useState([{listItem: "", itemRef: null}]);
-    const [currentValue, setCurrentValue] = useState({index: null, value: ""})
+    const [list, setList] = useState([""])
 
+    const [currentValue, setCurrentValue] = useState([list.length - 1])
 
     const handleChange = (index, event) => {
-        const {name, value} = event.target;
-        setCurrentValue({index, value})
+        const {value} = event.target;
         const initialList = [...list];
-        initialList[index][name] = value;
+        initialList[index] = value;
+        if (value.trim().length && !list[index + 1]) {
+            initialList[index + 1] = ""
+        }
+        if (!value.trim().length) {
+            initialList.splice(index, 1)
+        }
         setList(initialList);
+
     }
 
-    const handleDelete = (index) => {
+    const handleDelete = index => {
         const initialList = [...list];
         initialList.splice(index, 1);
         setList(initialList);
     };
 
 
-    const handleSubmit = useCallback(event => {
-        const last = list[list.length - 1]
-        if (event.key === "Enter" && currentValue.value.trim().length) {
-                last.itemRef.focus();
+    const handleSubmit = (event, index) => {
+        if (event.key === "Enter" && list[index]) {
+            setCurrentValue([list.length - 1])
         }
-
-    }, [list, currentValue]);
-
-    useEffect(() => {
-        if (list[list.length - 1].itemRef)
-            list[list.length - 1].itemRef.focus();
-    }, []);
-
-
-    useEffect(() => {
-        const initialList = [...list];
-        if (!currentValue.value && initialList.length !== 1) {
-            handleDelete(currentValue.index)
-        }
-    }, [currentValue])
-
-    useEffect(() => {
-        const initialList = [...list];
-        const last = initialList[initialList.length - 1]
-        if (currentValue.value.trim().length > 0 && last.listItem) {
-            setList([...list, {listItem: "", itemRef: null}])
-        }
-
-    }, [list, currentValue])
+    };
 
     return {
         list,
+        currentValue,
         handleChange,
         handleSubmit,
         handleDelete,

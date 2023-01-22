@@ -7,6 +7,7 @@ const List = ({initialState}) => {
 
     const {
         list,
+        currentValue,
         handleChange,
         handleSubmit,
         handleDelete,
@@ -19,14 +20,12 @@ const List = ({initialState}) => {
                 <ListItem
                     key={`list_item_${item.value}_${index}`}
                     list={list}
-                    name={"listItem"}
-                    id={"list_item"}
-                    value={item.listItem}
+                    currentValue={currentValue}
+                    value={item}
                     index={index}
                     onChange={handleChange.bind(this, index)}
-                    onKeydown={handleSubmit.bind(this)}
-                    onDelete={handleDelete.bind(this,index)}
-                    refer={e => item.itemRef = e}
+                    onKeydown={event => handleSubmit(event, index)}
+                    onDelete={() => handleDelete(index)}
                 />)
             )}
         </ol>

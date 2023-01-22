@@ -7,9 +7,7 @@ body {
     overflow: hidden;
     min-width: 670px;
     height: 100vh;
-    background: linear-gradient(270deg, #00000a,
-    rgb(3, 3, 3),
-    rgb(11, 13, 21));
+    background: linear-gradient(270deg, #232526, #27282a);
     background-size: 1800% 1800%;
     animation: Animation 40s cubic-bezier(0.24, 0.18, 0.64, 0.67) infinite;
 }
@@ -35,7 +33,7 @@ body {
 .opener {
     position: absolute;
     top: 50%;
-    left:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: 40px;
@@ -49,9 +47,18 @@ body {
 }
 
 .opener:hover {
-    box-shadow: 0 0 10px  5px rgba(255, 255, 255, 0.61);
     scale: 1.1;
-    transition: ease-in 300ms;
+    transition: ease-in 200ms;
+}
+
+.error {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
 }
 
 ::-webkit-scrollbar {
@@ -59,17 +66,14 @@ body {
     height: 3px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.86);
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #bdb7b7;
     cursor: pointer;
