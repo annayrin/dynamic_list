@@ -2,7 +2,7 @@ import React from 'react';
 import List from "../list/list";
 import "./column.css"
 
-function Column({header, initialState}) {
+function Column({header}) {
 
 
     return (
@@ -11,7 +11,7 @@ function Column({header, initialState}) {
                 {header}
             </div>
             <div className="col-content">
-                <List initialState={initialState}/>
+                <List />
             </div>
         </div>
     );

@@ -2,8 +2,6 @@ import React from 'react';
 import "./wrapper.css"
 import Column from "../column/column";
 
-const initialState1 = [""]
-const initialState2 = [""]
 function Wrapper({handleOpen}) {
     return (
         <section className="main-container">
@@ -18,11 +16,9 @@ function Wrapper({handleOpen}) {
             <div className="content">
                 <Column
                     header={"Pros"}
-                    initialState={initialState1}
                 />
                 <Column
                     header={"Cons"}
-                    initialState={initialState2}
                 />
 
             </div>

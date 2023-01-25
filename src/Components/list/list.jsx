@@ -3,15 +3,15 @@ import useList from "./use-list";
 import "./list.css"
 
 
-const List = ({initialState}) => {
+const List = () => {
 
     const {
         list,
-        currentValue,
+        inputRef,
         handleChange,
         handleSubmit,
         handleDelete,
-    } = useList(initialState)
+    } = useList()
 
 
     return (
@@ -19,11 +19,11 @@ const List = ({initialState}) => {
             {list.map((item, index) => (
                 <ListItem
                     key={`list_item_${item.value}_${index}`}
+                    refer={index === list.length-1 ? inputRef : null}
                     list={list}
-                    currentValue={currentValue}
                     value={item}
                     index={index}
-                    onChange={handleChange.bind(this, index)}
+                    onChange={(event) => handleChange(event, index)}
                     onKeydown={event => handleSubmit(event, index)}
                     onDelete={() => handleDelete(index)}
                 />)

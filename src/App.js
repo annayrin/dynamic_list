@@ -1,6 +1,6 @@
 import "./App.css";
 import Wrapper from "./Components/wrapper/wrapper";
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         setOpen(!open)
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setBrowser(navigator.userAgentData.brands[1])
     }, [])
 

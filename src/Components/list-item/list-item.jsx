@@ -1,31 +1,21 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import "./list-item.css"
 
 
-function ListItem({list, value, index, currentValue, onChange, onDelete, onKeydown}) {
-
-    const inputRef = useRef(null)
-
-    useEffect(() => {
-        if (+inputRef.current.name === currentValue[0]) {
-            inputRef.current.focus()
-        }
-    }, [currentValue])
-
+function ListItem({list, value, index, refer, onChange, onDelete, onKeydown}) {
 
     return (
 
         <li className="itemContent">
             <div className="listDiv">
                 <input
-                    name={index}
                     type="text"
                     value={value}
                     onChange={onChange}
                     onKeyDown={onKeydown}
-                    ref={inputRef}
+                    ref={refer}
                     maxLength={25}
-
+                    autoFocus={index === 0}
                 />
                 {index !== list.length - 1 && (
                     <button
