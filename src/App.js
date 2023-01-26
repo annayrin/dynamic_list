@@ -36,7 +36,7 @@ function App() {
                         </div>
                         : open === "list" ?
                             <Wrapper handleOpen={handleOpen.bind(this, null)}/>
-                            : <Trimmer/>
+                            : <Trimmer handleOpen={handleOpen.bind(this,null)}/>
                 )
                 : <div className="error">
                     Please use Google Chrome's latest version
