@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef, useState} from "react";
+import React, {useCallback, useRef, useState} from "react";
 import "./resizable-div.css"
 
 const initialData = {
@@ -30,9 +30,7 @@ function ResizableDiv() {
             minutes + ":" + (seconds < 10 ? "0" : "") + seconds
     }
 
-    const millis = useMemo(() =>
-            millisToMinutesAndSeconds(time),
-        [time])
+    const millis = millisToMinutesAndSeconds(time)
 
     const changeSide = side => {
         setSide(side)
@@ -61,7 +59,7 @@ function ResizableDiv() {
             let leftWidth = newWidth - (event.clientX - initialX)
             let leftTime = initialTime * leftWidth / maxWidth
             let currentX = initialX + (event.clientX - x)
-            if (side === "right" && rightTime >= minTime && rightWidth <= maxWidth && event.clientX < maxWidth ) {
+            if (side === "right" && rightTime >= minTime && rightWidth <= maxWidth && event.clientX < maxWidth) {
                 setNewWidth(rightWidth);
                 setTime(rightTime)
 
