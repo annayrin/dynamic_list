@@ -1,0 +1,70 @@
+
+.resizable {
+    position: absolute;
+    border: 2px solid rgb(247, 207, 6);
+    height: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    z-index: 2;
+    background: linear-gradient(rgb(86, 144, 255), rgb(46, 109, 239));
+}
+
+.resizable:after {
+    content: attr(data-time);
+    position: absolute;
+    top: -20px;
+    width: 45px;
+    height: 20px;
+    background: rgb(247, 207, 6);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 12px;
+    color: rgb(54, 63, 90);
+    font-weight: 600;
+
+}
+
+.drager {
+    width: calc(100% - 100px);
+    margin: auto;
+    height: 100%;
+    cursor: grab;
+}
+
+
+.resizer {
+    width: 20px;
+    height: 105%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 207, 6);
+    cursor: ew-resize;
+    color: rgb(37, 46, 72);
+    font-size: 14px;
+    font-weight: 700;
+
+}
+
+.left {
+    left: 0;
+    top: 0;
+}
+
+.left:after {
+    content: "<";
+    position: absolute;
+}
+
+.right {
+    right: 0;
+    top: 0;
+}
+
+.right:after {
+    content: ">";
+    position: absolute;
+}
+
