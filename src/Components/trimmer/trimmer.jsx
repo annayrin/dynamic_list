@@ -6,9 +6,7 @@ function Trimmer({handleOpen}) {
     return (
         <section className="trim-wrapper">
             <span className="trim-closer" onClick={handleOpen}>x</span>
-            <div className="trim-container" >
                 <ResizableDiv />
-            </div>
         </section>
 
     );

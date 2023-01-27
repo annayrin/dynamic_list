@@ -1,18 +1,9 @@
-.trim-container {
-    height: 45px;
-    border-radius: 5px;
-    width: 800px;
-    background-color: rgb(207, 224, 255);
-    position: relative;
-}
 
 .trim-wrapper {
     background: white;
-    display: flex;
     height: 100%;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
 .trim-closer {
