@@ -45,17 +45,29 @@
 
 .drag {
     width: 40px;
-    background: red;
     margin: auto;
     height: 100%;
     cursor: grab;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag > svg {
+    transform: rotate(90deg);
+    fill: white;
+    opacity: 0.5;
+}
+
+.drag:hover > svg {
+    opacity: 1;
 }
 
 
 .resizer {
     width: 30px;
     height: 100%;
-    border-radius: 0 5px 5px 0;
     position: absolute;
     display: flex;
     justify-content: center;
