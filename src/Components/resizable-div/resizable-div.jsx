@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import "./resizable-div.css"
 
 const initialData = {
-    initialTime: 70000,
+    initialTime: 30000,
     minTime: 10000,
     millisToMinutesAndSeconds: (millis) => {
         let minutes = Math.floor(millis / 60000);
@@ -10,6 +10,14 @@ const initialData = {
         return seconds === 60 ?
             (minutes + 1) + ":00" :
             minutes + ":" + (seconds < 10 ? "0" : "") + seconds
+    },
+    getSecondsTracker: (seconds) => {
+        let arr = []
+        for (let i = 0; i <= seconds / 1000; i += 5) {
+            arr.push(i)
+
+        }
+        return arr;
     }
 }
 
@@ -17,7 +25,7 @@ function ResizableDiv() {
 
     const divRef = useRef(null)
 
-    const {initialTime, minTime, millisToMinutesAndSeconds} = initialData
+    const {initialTime, minTime, millisToMinutesAndSeconds, getSecondsTracker} = initialData
 
     const [initialWidth, setInitialWidth] = useState(null)
     const [initialLeft, setInitialLeft] = useState(0) // left from viewport
@@ -34,7 +42,10 @@ function ResizableDiv() {
     const customStyle = {width: customWidth * 100 / initialWidth + "%", left: customLeft * 100 / initialWidth + "%"}
 
     const time = millisToMinutesAndSeconds(initialTime * customWidth / initialWidth)
+    const start = millisToMinutesAndSeconds(customLeft * initialTime / initialWidth)
+    const end = millisToMinutesAndSeconds((customWidth + customLeft) * initialTime / initialWidth)
     const minWidth = minTime * initialWidth / initialTime
+    const secondsTrack = getSecondsTracker(initialTime)
 
 
     const handleMouseDown = (event, side) => {
@@ -98,9 +109,14 @@ function ResizableDiv() {
                     data-time={time}
                     style={customStyle}
                 >
-                    <div className='resizer left'
+                    <div className='resizer left '
+                         data-start-second={start}
                          onMouseDown={(event) => handleMouseDown(event, "left")}
                     >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M13.93 5.36a1.21 1.21 0 011.72 0 1.29 1.29 0 010 1.77L10.93 12l4.72 4.87a1.29 1.29 0 010 1.77 1.21 1.21 0 01-1.72 0l-5.57-5.75a1.28 1.28 0 010-1.78z"></path>
+                        </svg>
                     </div>
                     <div className="drag"
                          onMouseDown={handleDrag}
@@ -112,9 +128,24 @@ function ResizableDiv() {
                         </svg>
                     </div>
                     <div className='resizer right'
+                         data-end-second={end}
+
                          onMouseDown={(event) => handleMouseDown(event, "right")}
                     >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M10.07 5.36a1.21 1.21 0 00-1.72 0 1.29 1.29 0 000 1.77L13.07 12l-4.72 4.87a1.29 1.29 0 000 1.77 1.21 1.21 0 001.72 0l5.57-5.75a1.28 1.28 0 000-1.78z"></path>
+                        </svg>
                     </div>
+                </div>
+                <div className="seconds-counter">
+                    {secondsTrack.map((item, i) =>
+                        (<span
+                            key={`second_${item}_${i}`}
+                            className="seconds"> {item}s
+                        </span>)
+                    )
+                    }
                 </div>
             </div>
         </section>
