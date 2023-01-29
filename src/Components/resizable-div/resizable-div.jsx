@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import "./resizable-div.css"
 
 const initialData = {
-    initialTime: 30000,
+    initialTime: 30121,
     minTime: 10000,
     millisToMinutesAndSeconds: (millis) => {
         let minutes = Math.floor(millis / 60000);
@@ -13,10 +13,13 @@ const initialData = {
     },
     getSecondsTracker: (seconds) => {
         let arr = []
-        for (let i = 0; i <= seconds / 1000; i += 5) {
+        for (let i = 0; i <= Math.round(seconds / 1000); i++) {
             arr.push(i)
 
         }
+        // if(Math.round(seconds / 1000) > arr[arr.length-1]) {
+        //     arr.push(  Math.round(seconds / 1000))
+        // }
         return arr;
     }
 }
@@ -139,12 +142,19 @@ function ResizableDiv() {
                     </div>
                 </div>
                 <div className="seconds-counter">
-                    {secondsTrack.map((item, i) =>
-                        (<span
-                            key={`second_${item}_${i}`}
-                            className="seconds"> {item}s
+                    {secondsTrack.map((item, i) => {
+                        if (i % 5 === 0) {
+                            return (<span
+                                key={`second_${item}_${i}`}
+                                className="seconds"> {item}s
                         </span>)
-                    )
+                        } else {
+                            return (<span
+                                key={`second_${item}_${i}`}
+                                className="seconds note">
+                        </span>)
+                        }
+                    })
                     }
                 </div>
             </div>
