@@ -95,7 +95,7 @@ function UseResizableDiv(initialData) {
         setInitialWidth(divRef.current.offsetWidth) // to receive the initial width of the trimmer in px to calc the %
         setCustomWidth(divRef.current.offsetWidth)
         setInitialLeft(divRef.current.offsetParent.offsetLeft)  // distance from the left viewport of the div(trim holder not trimmer)
-    }, [])
+    }, [window.innerWidth])
 
     return {
         divRef,

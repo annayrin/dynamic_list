@@ -152,7 +152,7 @@
 
 .note{
     position: relative;
-    height: 25px;
+    height: 30px;
 }
 
 .note:after {
@@ -162,7 +162,17 @@
     left: 0;
     transform: translate(-50%);
     color: rgb(144, 169, 215);
-;
 
 }
 
+@media (max-width: 940px) {
+    .note:not(:nth-child(2n+1)):after{
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .note:not(:nth-child(4n+1)):after{
+        display: none;
+    }
+}
